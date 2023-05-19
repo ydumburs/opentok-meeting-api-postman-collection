@@ -1,6 +1,6 @@
 # Overview
 Postman collection for Vonage Meeting API REST API with basic parameters and request body sample. The collection includes pre-request script which automatically generates JSON web token based on your Vonage credentials.  
-<img width="222" alt="Screenshot 2023-05-19 at 10 51 48" src="https://github.com/ydumburs/vonage-video-api-postman-collection/assets/45432538/55b28857-9b24-4bad-9c8a-2216ffe90ed6">
+<img width="157" alt="Screenshot 2023-05-19 at 12 10 06" src="https://github.com/ydumburs/vonage-meeting-api-postman-collection/assets/45432538/31b74db8-2213-4342-8ec1-81f46cc592b4">
 
 # Applies To
 - [Vonage Meeting REST API](https://developer.vonage.com/api/meetings)
