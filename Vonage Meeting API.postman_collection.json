@@ -1,0 +1,1281 @@
+{
+	"info": {
+		"_postman_id": "5fe11c66-b98e-45f4-86ac-a2235656467b",
+		"name": "Vonage Meeting API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12740096"
+	},
+	"item": [
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "Create a room",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"display_name\": \"Test Meeting\",\n    \"ui_settings\":{\n        \"language\":\"en\"\n    },\n    \"metadata\": \"Free text that can be attached to a room. This will be passed in the form of a header in events related to this room.\",\n    \"type\": \"long_term\",\n    \"expires_at\": \"2024-03-15T09:00:00Z\",\n    \"recording_options\": {\n        \"auto_record\": true,\n        \"record_only_owner\": false\n    },\n    \"expire_after_use\": false,\n    \"theme_id\": \"{{theme_id}}\",\n    \"join_approval_level\": \"none\",\n    \"initial_join_options\": {\n        \"microphone_state\": \"off\"\n    },\n    \"callback_urls\": {\n        \"rooms_callback_url\": \"{{callback_url}}\",\n        \"sessions_callback_url\": \"{{callback_url}}\",\n        \"recordings_callback_url\": \"{{callback_url}}\"\n    },\n    \"available_features\": {\n        \"is_recording_available\": true,\n        \"is_chat_available\": true,\n        \"is_whiteboard_available\": true,\n        \"is_locale_switcher_available\": true\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/rooms",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all available rooms",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/rooms",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get room details",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/rooms/{{room_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"rooms",
+								"{{room_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an existing room",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"update_details\": {\n        \"expires_at\": \"2023-03-16T09:00:00Z\",\n        \"expire_after_use\": false,\n        \"theme_id\": \"{{theme_id}}\",\n        \"join_approval_level\": \"none\",\n        \"initial_join_options\": {\n            \"microphone_state\": \"default\"\n        },\n        \"callback_urls\": {\n            \"rooms_callback_url\": \"{{callback_url}}\",\n            \"sessions_callback_url\": \"{{callback_url}}\",\n            \"recordings_callback_url\": \"{{callback_url}}\"\n        },\n        \"available_features\": {\n            \"is_recording_available\": true,\n            \"is_chat_available\": true,\n            \"is_whiteboard_available\": true,\n            \"is_locale_switcher_available\": false\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/rooms/{{room_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"rooms",
+								"{{room_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recording",
+			"item": [
+				{
+					"name": "Get a recording",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/recordings/{{recording_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"recordings",
+								"{{recording_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all recordings from a session",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/sessions/{{session_id}}/recordings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"sessions",
+								"{{session_id}}",
+								"recordings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a recording",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/recordings/{{recording_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"recordings",
+								"{{recording_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dial in numbers",
+			"item": [
+				{
+					"name": "Get numbers that can be used to dial into a meeting",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/dial-in-numbers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"dial-in-numbers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Theme",
+			"item": [
+				{
+					"name": "Create a theme",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"theme_name\": \"Mechanic Spectrum\",\n    \"main_color\": \"#8C93D4\",\n    \"brand_text\": \"Mechanic Spectrum\",\n    \"short_company_url\": \"vonage\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/themes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all themes",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/themes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get theme by theme id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/themes/{{theme_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes",
+								"{{theme_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get rooms by theme id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/themes/{{theme_id}}/rooms",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes",
+								"{{theme_id}}",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a theme",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"update_details\": {\n        \"theme_name\": \"Mechanic Spectrum\",\n        \"main_color\": \"#A7AEF0\",\n        \"brand_text\": \"Mechanic Spectrum\",\n        \"short_company_url\": \"vonage\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/themes/{{theme_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes",
+								"{{theme_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a theme to a room",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"update_details\": {\n        \"theme_id\": \"{{theme_id}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/rooms/{{room_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"rooms",
+								"{{room_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set a theme as default",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"update_details\": {\n        \"default_theme_id\": \"{{theme_id}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/applications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove a theme from a room",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"update_details\": {\n        \"theme_id\": null\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/rooms/{{room_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"rooms",
+								"{{room_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a theme",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/themes/{{theme_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes",
+								"{{theme_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logo",
+			"item": [
+				{
+					"name": "Retrieve upload credentials",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/meetings/themes/logos-upload-urls",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes",
+								"logos-upload-urls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload file to AWS - white logo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Content-Type",
+									"value": "image/png",
+									"type": "text"
+								},
+								{
+									"key": "key",
+									"value": "auto-expiring-temp/logos/white/862ecc00-a70e-431e-bf50-6fb5075d97bb",
+									"type": "text"
+								},
+								{
+									"key": "logoType",
+									"value": "white",
+									"type": "text"
+								},
+								{
+									"key": "bucket",
+									"value": "roomservice-whitelabel-logos-prod",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Algorithm",
+									"value": "AWS4-HMAC-SHA256",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Credential",
+									"value": "ASIA5NAYMMB6P3KUX3MM/20230224/us-east-1/s3/aws4_request",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Date",
+									"value": "20230224T125246Z",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Security-Token",
+									"value": "IQoJb3JpZ2luX2VjEGoaCXVzLWVhc3QtMSJHMEUCIQCQ0ls6AS2Kfd9erhmgova0/AQlBrJZmJXM6T96OHjzNAIgbLOg1RAtmEcVuAhkq5qX7NEJd6vfiv7NsPsllCb+F4cqiwQIEhAAGgw5MjEzMjE2Mjc3NzIiDE2hJs51BOiykfRApSroA5nHfqXBHm9VYvPwbCGntrSdH+wscIdRBpDsawrwIKYob8JU85xZBkRcmnCCp+V/jtxzCay20CjbKSX3kC0Z7OSERcujSScbCkTezmrwGVk9p47MGqERHTfZw+qDT6HItYxxZRW2PBxRnbmBL30c7B4fVMXTsstLc739Ni8lGgDECX6HJrQoh2usYwvS1ovbjZOdKrJhcVQDjWwcV8TX8MQ1MSqk6hw506gSkCDEKy5ymE50gkFeW+JCGfjL/E7Mcqpwe797YRVCuyDtO+f+VycNRfMDBgOOry07O5soosTgdcrJ/qnf+nGI4jIJFslpx84aAnNrU8izF9yo4H0ypimXttd4ZRJHsrDwYSqMIsMihdGKDZptislXh8RrHcraIzsoNtGS1fQ0MoDt+uq57dKq8WLYXWbiCYgA13P3RSy+9HKrgrINuesReNqRdiz6v0mbUrI2mwD18KGR2IRVsPl9n1U4oHU9tlKVs2rZI1VimxNy3BYBriMRXYj9KgRd1WpV2nTQ/HL3CW55s0ibkc99Vok31Gi9ewZreVyCeDXvjTv2uDAeAy5kFiDQr3bRbWr55vkEz8mYZmgEMvrj43vx9+plYe69s3HRNAsM4epUlEEfdtb1xlpUiFK4WWjOIztj796G2U4AMKP94Z8GOqUBmYZ15Af+6RtSoK+qwop2fIQFzgjzT9toyyEca0cFuVHHZ9bpKaWLPJQDA6QaX0YpkfcWN9ayTms2ZAsjW89Ek3hvf4WZYt8nJr+CmtEXb064OIqe4UAxq9CNckj9K2pYArP5+tbMxfTRjHKnn5Xr/PjzdA28E28Aao8zoBgRZljcN8YVUeLBt2/BgMMpK8cjnzYAdOXXd9cn8w9/4AuANCI4eujh",
+									"type": "text"
+								},
+								{
+									"key": "Policy",
+									"value": "eyJleHBpcmF0aW9uIjoiMjAyMy0wMi0yNFQxMzowNzo0NloiLCJjb25kaXRpb25zIjpbWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDQ4NTc2XSx7IkNvbnRlbnQtVHlwZSI6ImltYWdlL3BuZyJ9LHsia2V5IjoiYXV0by1leHBpcmluZy10ZW1wL2xvZ29zL3doaXRlLzg2MmVjYzAwLWE3MGUtNDMxZS1iZjUwLTZmYjUwNzVkOTdiYiJ9LHsibG9nb1R5cGUiOiJ3aGl0ZSJ9LHsiYnVja2V0Ijoicm9vbXNlcnZpY2Utd2hpdGVsYWJlbC1sb2dvcy1wcm9kIn0seyJYLUFtei1BbGdvcml0aG0iOiJBV1M0LUhNQUMtU0hBMjU2In0seyJYLUFtei1DcmVkZW50aWFsIjoiQVNJQTVOQVlNTUI2UDNLVVgzTU0vMjAyMzAyMjQvdXMtZWFzdC0xL3MzL2F3czRfcmVxdWVzdCJ9LHsiWC1BbXotRGF0ZSI6IjIwMjMwMjI0VDEyNTI0NloifSx7IlgtQW16LVNlY3VyaXR5LVRva2VuIjoiSVFvSmIzSnBaMmx1WDJWakVHb2FDWFZ6TFdWaGMzUXRNU0pITUVVQ0lRQ1EwbHM2QVMyS2ZkOWVyaG1nb3ZhMC9BUWxCckpabUpYTTZUOTZPSGp6TkFJZ2JMT2cxUkF0bUVjVnVBaGtxNXFYN05FSmQ2dmZpdjdOc1BzbGxDYitGNGNxaXdRSUVoQUFHZ3c1TWpFek1qRTJNamMzTnpJaURFMmhKczUxQk9peWtmUkFwU3JvQTVuSGZxWEJIbTlWWXZQd2JDR250clNkSCt3c2NJZFJCcERzYXdyd0lLWW9iOEpVODV4WkJrUmNtbkNDcCtWL2p0eHpDYXkyMENqYktTWDNrQzBaN09TRVJjdWpTU2NiQ2tUZXptcndHVms5cDQ3TUdxRVJIVGZadytxRFQ2SEl0WXh4WlJXMlBCeFJuYm1CTDMwYzdCNGZWTVhUc3N0TGM3MzlOaThsR2dERUNYNkhKclFvaDJ1c1l3dlMxb3ZialpPZEtySmhjVlFEald3Y1Y4VFg4TVExTVNxazZodzUwNmdTa0NERUt5NXltRTUwZ2tGZVcrSkNHZmpML0U3TWNxcHdlNzk3WVJWQ3V5RHRPK2YrVnljTlJmTURCZ09PcnkwN081c29vc1RnZGNySi9xbmYrbkdJNGpJSkZzbHB4ODRhQW5OclU4aXpGOXlvNEgweXBpbVh0dGQ0WlJKSHNyRHdZU3FNSXNNaWhkR0tEWnB0aXNsWGg4UnJIY3JhSXpzb050R1MxZlEwTW9EdCt1cTU3ZEtxOFdMWVhXYmlDWWdBMTNQM1JTeSs5SEtyZ3JJTnVlc1JlTnFSZGl6NnYwbWJVckkybXdEMThLR1IySVJWc1BsOW4xVTRvSFU5dGxLVnMyclpJMVZpbXhOeTNCWUJyaU1SWFlqOUtnUmQxV3BWMm5UUS9ITDNDVzU1czBpYmtjOTlWb2szMUdpOWV3WnJlVnlDZURYdmpUdjJ1REFlQXk1a0ZpRFFyM2JSYldyNTV2a0V6OG1ZWm1nRU12cmo0M3Z4OStwbFllNjlzM0hSTkFzTTRlcFVsRUVmZHRiMXhscFVpRks0V1dqT0l6dGo3OTZHMlU0QU1LUDk0WjhHT3FVQm1ZWjE1QWYrNlJ0U29LK3F3b3AyZklRRnpnanpUOXRveXlFY2EwY0Z1VkhIWjlicEthV0xQSlFEQTZRYVgwWXBrZmNXTjlheVRtczJaQXNqVzg5RWszaHZmNFdaWXQ4bkpyK0NtdEVYYjA2NE9JcWU0VUF4cTlDTmNrajlLMnBZQXJQNSt0Yk14ZlRSakhLbm41WHIvUGp6ZEEyOEUyOEFhbzh6b0JnUlpsamNOOFlWVWVMQnQyL0JnTU1wSzhjam56WUFkT1hYZDljbjh3OS80QXVBTkNJNGV1amgifV19",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Signature",
+									"value": "74b5450a482d04b0611e8d477a506380fdb2be2c383841cc2c648c85311560fd",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://s3.amazonaws.com/roomservice-whitelabel-logos-prod",
+							"protocol": "https",
+							"host": [
+								"s3",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"roomservice-whitelabel-logos-prod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload file to AWS - colored logo",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Content-Type",
+									"value": "image/png",
+									"type": "text"
+								},
+								{
+									"key": "key",
+									"value": "auto-expiring-temp/logos/colored/d967ec7d-0aaf-4b16-9b90-721674256c6f",
+									"type": "text"
+								},
+								{
+									"key": "logoType",
+									"value": "colored",
+									"type": "text"
+								},
+								{
+									"key": "bucket",
+									"value": "roomservice-whitelabel-logos-prod",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Algorithm",
+									"value": "AWS4-HMAC-SHA256",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Credential",
+									"value": "ASIA5NAYMMB6OZGUWKUG/20230224/us-east-1/s3/aws4_request",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Date",
+									"value": "20230224T165928Z",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Security-Token",
+									"value": "IQoJb3JpZ2luX2VjEG4aCXVzLWVhc3QtMSJGMEQCIAaMOJ81bah8sr1rpgquKffr6NkYEWnPelUKYzgIlK9OAiB8pNe2f5WRje123mRn0nWzFLXO8aY0JxcJw7JpjcO2DCqLBAgXEAAaDDkyMTMyMTYyNzc3MiIMn0koYY6dz/qw783DKugDvPu035H95PQFkqa6ub922yiWgjZX13uVLKLB+UjnNnXt02gk80IYCymnV9iirGk14NdO+zISu5gSiNI+sdcBqSbUcC6/bLneYwudx9WxXUn3f5TPiISdkxeql4YKS82XdILBwkwpJytD/zZaJIlWGeCVB8EqNrChEJwDzXi3w/UWjwQLyjcucp07rK7OBTxKIAvKE5y1gL+Ia6kdpYcMidqfGPEogjunRRFnTIcu0Qsm21unJ10mix+xMVLnzN8gdGToR10MBtoJIBpYJL3duQnoBv3fO1h/oUAzt+dkE4C1QkA0P/lCbRSieec90KTvHz8Uy6AFBGhSjkLsPWB5YRgc/fdkr7sbxSrFXDQFui6By3VhfOpQMsoCD8MlYf8MmtLigCsLG3EtHbirVG31MTTO5Fz4iMBmiGvQ3Ar66weoca5sHjDY/Of2Oa67ZHhPVCRCuSoroV5EL9O09wNXIA/LwP4eeiFC8pfIVg11gbz68IIot3jDSKmO9dZykBs4yn9tAHTNkSyu7DpRliOhQ9KqtTkfdz+FWdHuN+DD0Ivr55BHKX2FPdMDO9QRsyH4GEcnbIIi9Mem3G/VhNQU8VbCW0j71x+XQYq+NeLVe+ylT7dq/Dt6JM52d6+pRPoeq7yrmV4MvTMw7oTjnwY6pgEOX8uBZ/+J7yQFtOuh0CDm8kOO2eUnHtYZb9aLp0593mRsOtflk7Dza1hBt3ibEqArltGI1stwa5a4iZwpDYtZu5Bo7FyCwzcGdTdIcaU6RvgFTXIjaraQiOYu8Pbmej4frMY30egTB4qKecNyejk06INgW8VmwuTXbWafyJh3DC6Rmod0GYhFpZCaS2O+iBnxuIAGLD/iMFUCRpu1VwueVTYJ+2Ar",
+									"type": "text"
+								},
+								{
+									"key": "Policy",
+									"value": "eyJleHBpcmF0aW9uIjoiMjAyMy0wMi0yNFQxNzoxNDoyOFoiLCJjb25kaXRpb25zIjpbWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDQ4NTc2XSx7IkNvbnRlbnQtVHlwZSI6ImltYWdlL3BuZyJ9LHsia2V5IjoiYXV0by1leHBpcmluZy10ZW1wL2xvZ29zL2NvbG9yZWQvZDk2N2VjN2QtMGFhZi00YjE2LTliOTAtNzIxNjc0MjU2YzZmIn0seyJsb2dvVHlwZSI6ImNvbG9yZWQifSx7ImJ1Y2tldCI6InJvb21zZXJ2aWNlLXdoaXRlbGFiZWwtbG9nb3MtcHJvZCJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFTSUE1TkFZTU1CNk9aR1VXS1VHLzIwMjMwMjI0L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIzMDIyNFQxNjU5MjhaIn0seyJYLUFtei1TZWN1cml0eS1Ub2tlbiI6IklRb0piM0pwWjJsdVgyVmpFRzRhQ1hWekxXVmhjM1F0TVNKR01FUUNJQWFNT0o4MWJhaDhzcjFycGdxdUtmZnI2TmtZRVduUGVsVUtZemdJbEs5T0FpQjhwTmUyZjVXUmplMTIzbVJuMG5XekZMWE84YVkwSnhjSnc3SnBqY08yRENxTEJBZ1hFQUFhRERreU1UTXlNVFl5TnpjM01pSU1uMGtvWVk2ZHovcXc3ODNES3VnRHZQdTAzNUg5NVBRRmtxYTZ1YjkyMnlpV2dqWlgxM3VWTEtMQitVam5Oblh0MDJnazgwSVlDeW1uVjlpaXJHazE0TmRPK3pJU3U1Z1NpTkkrc2RjQnFTYlVjQzYvYkxuZVl3dWR4OVd4WFVuM2Y1VFBpSVNka3hlcWw0WUtTODJYZElMQndrd3BKeXREL3paYUpJbFdHZUNWQjhFcU5yQ2hFSndEelhpM3cvVVdqd1FMeWpjdWNwMDdySzdPQlR4S0lBdktFNXkxZ0wrSWE2a2RwWWNNaWRxZkdQRW9nanVuUlJGblRJY3UwUXNtMjF1bkoxMG1peCt4TVZMbnpOOGdkR1RvUjEwTUJ0b0pJQnBZSkwzZHVRbm9CdjNmTzFoL29VQXp0K2RrRTRDMVFrQTBQL2xDYlJTaWVlYzkwS1R2SHo4VXk2QUZCR2hTamtMc1BXQjVZUmdjL2Zka3I3c2J4U3JGWERRRnVpNkJ5M1ZoZk9wUU1zb0NEOE1sWWY4TW10TGlnQ3NMRzNFdEhiaXJWRzMxTVRUTzVGejRpTUJtaUd2UTNBcjY2d2VvY2E1c0hqRFkvT2YyT2E2N1pIaFBWQ1JDdVNvcm9WNUVMOU8wOXdOWElBL0x3UDRlZWlGQzhwZklWZzExZ2J6NjhJSW90M2pEU0ttTzlkWnlrQnM0eW45dEFIVE5rU3l1N0RwUmxpT2hROUtxdFRrZmR6K0ZXZEh1TitERDBJdnI1NUJIS1gyRlBkTURPOVFSc3lINEdFY25iSUlpOU1lbTNHL1ZoTlFVOFZiQ1cwajcxeCtYUVlxK05lTFZlK3lsVDdkcS9EdDZKTTUyZDYrcFJQb2VxN3lybVY0TXZUTXc3b1RqbndZNnBnRU9YOHVCWi8rSjd5UUZ0T3VoMENEbThrT08yZVVuSHRZWmI5YUxwMDU5M21Sc090ZmxrN0R6YTFoQnQzaWJFcUFybHRHSTFzdHdhNWE0aVp3cERZdFp1NUJvN0Z5Q3d6Y0dkVGRJY2FVNlJ2Z0ZUWElqYXJhUWlPWXU4UGJtZWo0ZnJNWTMwZWdUQjRxS2VjTnllamswNklOZ1c4Vm13dVRYYldhZnlKaDNEQzZSbW9kMEdZaEZwWkNhUzJPK2lCbnh1SUFHTEQvaU1GVUNScHUxVnd1ZVZUWUorMkFyIn1dfQ==",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Signature",
+									"value": "74b5450a482d04b0611e8d477a506380fdb2be2c383841cc2c648c85311560fd",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://s3.amazonaws.com/roomservice-whitelabel-logos-prod",
+							"protocol": "https",
+							"host": [
+								"s3",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"roomservice-whitelabel-logos-prod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload file to AWS - favicon",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Content-Type",
+									"value": "image/png",
+									"type": "text"
+								},
+								{
+									"key": "key",
+									"value": "auto-expiring-temp/logos/favicon/7b808fcc-b6bb-4ebe-bcf0-33417419b7a5",
+									"type": "text"
+								},
+								{
+									"key": "logoType",
+									"value": "favicon",
+									"type": "text"
+								},
+								{
+									"key": "bucket",
+									"value": "roomservice-whitelabel-logos-prod",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Algorithm",
+									"value": "AWS4-HMAC-SHA256",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Credential",
+									"value": "ASIA5NAYMMB6FXDBX2PM/20230224/us-east-1/s3/aws4_request",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Date",
+									"value": "20230224T134130Z",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Security-Token",
+									"value": "IQoJb3JpZ2luX2VjEGoaCXVzLWVhc3QtMSJHMEUCIQCZnEQjKljzCNXF/+HWtJQl636Hh+ey74r3U4NQRuUlTgIgASW11BGxmyHYRzRoOCvJe4p3U6USA/8hbsdp4eolvNUqiwQIEhAAGgw5MjEzMjE2Mjc3NzIiDH72WEeslugj666sPCroA81k4xitAw02rV1rQHnjchN4jYsSKYnBODAy2Z8yV340Eg4X6eO0TWK4bSLWjyQppyVWsDR24OO2AAvqWg0ialdSm6UYVZgvnXNHRJplqq7Yeb4uYCMr71qcHcBdoPGcwY2KynbK9iwSgUxzdRFzHpbbXzzD1pAbgJWUF0tqXou6Jdtu+zQwCYUJldJWxaLP5nQaEkLDFB4tr2IEEygzM0jmVHpmYdbX5ZaQTTqVxnITSj6jmY2obDBdvQ/3Xq2gxBmNoEP9HtewO1pfYCtHfYMj9hTNwFGHtzRr4k78DIkW5YPyEoxtjpjGuehHYLN5fB8DcEcJjfaNSpJKkMmH3SdjbJ1fYPTVdqYErz2nqW0w6f9WPnNGFMlWSBZNEbAip5ZIM5+VS7WTul66hDAFzs2eg03dIcvs0SyElh24MyrG7zwkOemoBAr+9xPEqTHJpN88OLVkT4UMuXZzeZUDKEuWmSlt+Hx6HvTEDanALPPiI5xfhemrVEG8R33/ih1GmEZtZC3Ps+llIZY1JmtB3p1Kt0ekJgjC02zJ7tqTPZ+9fxWH5MitoPHVUhxuqZ+hvTqX42GRxvIpd9W06nPDygXetDuD/kZiaZaDKKtgqAmEhHfDvsPgn6PmDcuss3tMWgWEgmqhIcszMP3/4Z8GOqUBAIMhuaixE3+YyuYcOUOC43Yk0j8woFEdXKuZck5Wcy26S5CPSEvFSiVF9COQbXtedu9qK/1YpGp8XmAzN7VqhD6ayiJMaSVdm7YDccq3orehVjxMTiF+s0spFgBi0PVPAiKFvXMfaxah+79Mc0UXwzdPzdyV6N7ARraz1sXQkLykElZFMQttNNqfpaershiM8Vz8WHrPTTWYh4sJNcsAZDmNwA9I",
+									"type": "text"
+								},
+								{
+									"key": "Policy",
+									"value": "eyJleHBpcmF0aW9uIjoiMjAyMy0wMi0yNFQxMzo1NjozMFoiLCJjb25kaXRpb25zIjpbWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDQ4NTc2XSx7IkNvbnRlbnQtVHlwZSI6ImltYWdlL3BuZyJ9LHsia2V5IjoiYXV0by1leHBpcmluZy10ZW1wL2xvZ29zL2Zhdmljb24vN2I4MDhmY2MtYjZiYi00ZWJlLWJjZjAtMzM0MTc0MTliN2E1In0seyJsb2dvVHlwZSI6ImZhdmljb24ifSx7ImJ1Y2tldCI6InJvb21zZXJ2aWNlLXdoaXRlbGFiZWwtbG9nb3MtcHJvZCJ9LHsiWC1BbXotQWxnb3JpdGhtIjoiQVdTNC1ITUFDLVNIQTI1NiJ9LHsiWC1BbXotQ3JlZGVudGlhbCI6IkFTSUE1TkFZTU1CNkZYREJYMlBNLzIwMjMwMjI0L3VzLWVhc3QtMS9zMy9hd3M0X3JlcXVlc3QifSx7IlgtQW16LURhdGUiOiIyMDIzMDIyNFQxMzQxMzBaIn0seyJYLUFtei1TZWN1cml0eS1Ub2tlbiI6IklRb0piM0pwWjJsdVgyVmpFR29hQ1hWekxXVmhjM1F0TVNKSE1FVUNJUUNabkVRaktsanpDTlhGLytIV3RKUWw2MzZIaCtleTc0cjNVNE5RUnVVbFRnSWdBU1cxMUJHeG15SFlSelJvT0N2SmU0cDNVNlVTQS84aGJzZHA0ZW9sdk5VcWl3UUlFaEFBR2d3NU1qRXpNakUyTWpjM056SWlESDcyV0Vlc2x1Z2o2NjZzUENyb0E4MWs0eGl0QXcwMnJWMXJRSG5qY2hONGpZc1NLWW5CT0RBeTJaOHlWMzQwRWc0WDZlTzBUV0s0YlNMV2p5UXBweVZXc0RSMjRPTzJBQXZxV2cwaWFsZFNtNlVZVlpndm5YTkhSSnBscXE3WWViNHVZQ01yNzFxY0hjQmRvUEdjd1kyS3luYks5aXdTZ1V4emRSRnpIcGJiWHp6RDFwQWJnSldVRjB0cVhvdTZKZHR1K3pRd0NZVUpsZEpXeGFMUDVuUWFFa0xERkI0dHIySUVFeWd6TTBqbVZIcG1ZZGJYNVphUVRUcVZ4bklUU2o2am1ZMm9iREJkdlEvM1hxMmd4Qm1Ob0VQOUh0ZXdPMXBmWUN0SGZZTWo5aFROd0ZHSHR6UnI0azc4RElrVzVZUHlFb3h0anBqR3VlaEhZTE41ZkI4RGNFY0pqZmFOU3BKS2tNbUgzU2RqYkoxZllQVFZkcVlFcnoybnFXMHc2ZjlXUG5OR0ZNbFdTQlpORWJBaXA1WklNNStWUzdXVHVsNjZoREFGenMyZWcwM2RJY3ZzMFN5RWxoMjRNeXJHN3p3a09lbW9CQXIrOXhQRXFUSEpwTjg4T0xWa1Q0VU11WFp6ZVpVREtFdVdtU2x0K0h4Nkh2VEVEYW5BTFBQaUk1eGZoZW1yVkVHOFIzMy9paDFHbUVadFpDM1BzK2xsSVpZMUptdEIzcDFLdDBla0pnakMwMnpKN3RxVFBaKzlmeFdINU1pdG9QSFZVaHh1cVoraHZUcVg0MkdSeHZJcGQ5VzA2blBEeWdYZXREdUQva1ppYVphREtLdGdxQW1FaEhmRHZzUGduNlBtRGN1c3MzdE1XZ1dFZ21xaEljc3pNUDMvNFo4R09xVUJBSU1odWFpeEUzK1l5dVljT1VPQzQzWWswajh3b0ZFZFhLdVpjazVXY3kyNlM1Q1BTRXZGU2lWRjlDT1FiWHRlZHU5cUsvMVlwR3A4WG1Bek43VnFoRDZheWlKTWFTVmRtN1lEY2NxM29yZWhWanhNVGlGK3Mwc3BGZ0JpMFBWUEFpS0Z2WE1mYXhhaCs3OU1jMFVYd3pkUHpkeVY2TjdBUnJhejFzWFFrTHlrRWxaRk1RdHROTnFmcGFlcnNoaU04Vno4V0hyUFRUV1loNHNKTmNzQVpEbU53QTlJIn1dfQ==",
+									"type": "text"
+								},
+								{
+									"key": "X-Amz-Signature",
+									"value": "61eb5da560c5b3e2d72fc0c7a010c8b5fd34a6e592c7d4bf911757fb5b1c3e55",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://s3.amazonaws.com/roomservice-whitelabel-logos-prod",
+							"protocol": "https",
+							"host": [
+								"s3",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"roomservice-whitelabel-logos-prod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apply logos to a theme",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-OPENTOK-AUTH",
+								"type": "text",
+								"value": "{{jwt}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"keys\": [\n        \"auto-expiring-temp/logos/favicon/7b808fcc-b6bb-4ebe-bcf0-33417419b7a5\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/meetings/themes/{{theme_id}}/finalizeLogos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"meetings",
+								"themes",
+								"{{theme_id}}",
+								"finalizeLogos"
+							]
+						},
+						"description": "Create a new video object in the account. Note: this does not ingest a video file - use the Dynamic Ingest API for ingestion"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "Create an asynchronous report",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{vonage_api_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{vonage_api_key}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"MEETINGS\",\n    \"account_id\": \"{{vonage_api_key}}\",\n    \"date_start\": \"2023-03-01T00:00:00+00:00\",\n    \"date_end\": \"2023-03-31T00:00:00+00:00\",\n    // \"include_subaccounts\": \"true\",\n    // \"subtype\": \"SessionRecording\",\n    // \"session_id\": \"{{session_id}}\",\n    \"callback_url\": \"yukari.dumburs@vonage.com\"\n}"
+						},
+						"url": {
+							"raw": "https://api.nexmo.com/v2/reports",
+							"protocol": "https",
+							"host": [
+								"api",
+								"nexmo",
+								"com"
+							],
+							"path": [
+								"v2",
+								"reports"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/**",
+					" * Vonage",
+					" * Meeting API",
+					" * REST API ",
+					" * ",
+					" * https://developer.vonage.com/api/meetings",
+					" * ",
+					" * Created by: Yukari Dumburs",
+					" * Date: 13 Jan 2023",
+					" * ",
+					" */",
+					"",
+					"// Prepare to use jsrsasign-js library",
+					"var navigator = {};",
+					"var window = {};",
+					"eval(pm.environment.get(\"jsrsasign-js\")); // http://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js",
+					"",
+					"// Set header",
+					"var header = { \"alg\": \"RS256\", \"typ\": \"JWT\" };",
+					"",
+					"// Set payload",
+					"var data = {",
+					"  'iat': Math.floor(Date.now() / 1000),",
+					"  'jti': pm.environment.get('jti'),",
+					"  'application_id': pm.environment.get('application_id')",
+					"};",
+					"",
+					"// Set private key",
+					"var privateKey = pm.environment.get('private_key');",
+					"",
+					"// Convert header and payload to JSON",
+					"var sHeader = JSON.stringify(header);",
+					"var sPayload = JSON.stringify(data);",
+					"",
+					"// Create JWT",
+					"var sJWT = KJUR.jws.JWS.sign(header.alg, sHeader, sPayload, privateKey);",
+					"pm.environment.set('jwt', sJWT);",
+					"console.log(sJWT);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://api-eu.vonage.com/beta",
+			"type": "string"
+		}
+	]
+}
